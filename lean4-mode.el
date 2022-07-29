@@ -220,7 +220,7 @@ Invokes `lean4-mode-hook'.
     (add-hook hook fn nil 'local))
   (lean4-mode-setup))
 
-(defun lean--version ()
+(defun lean4--version ()
   (let ((version-line
          (car (last (process-lines (lean4-get-executable "lean")
                                    "-v")))))
@@ -229,13 +229,13 @@ Invokes `lean4-mode-hook'.
     (-take 3 version-line)))
 (defalias 'lean4--version 'lean--version)
 
-(defun lean-show-version ()
+(defun lean4-show-version ()
   (interactive)
   (message "Lean %s" (mapconcat 'identity (lean--version) ".")))
 (defalias 'lean4-show-version 'lean-show-version)
 
 ;;;###autoload
-(defun lean-select-mode ()
+(defun lean4-select-mode ()
   (if lean4-autodetect-lean3
       (let ((version (lean--version)))
         (cond ((equal (car version) "4") (lean4-mode))
