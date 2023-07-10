@@ -115,22 +115,22 @@ outside a project will default to that mode."
   :type 'boolean)
 
 (defcustom lean4-keybinding-std-exe1 (kbd "C-c C-x")
-  "Lean Keybinding for std-exe #1."
+  "Main Keybinding for `lean4-std-exe'."
   :group 'lean4-keybinding :type 'key-sequence)
 (defcustom lean4-keybinding-std-exe2 (kbd "C-c C-l")
-  "Lean Keybinding for std-exe #2."
+  "Alternative Keybinding for `lean4-std-exe'."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-show-key (kbd "C-c C-k")
-  "Lean Keybinding for show-key."
+  "Lean Keybinding for `quail-show-key'."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-server-restart (kbd "C-c C-r")
   "Lean Keybinding for server-restart."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-server-switch-version (kbd "C-c C-s")
-  "Lean Keybinding for lean4-server-switch-version."
+  "Lean Keybinding for `lean4-server-switch-version'."
   :group 'lean4-keybinding :type 'key-sequence)
 (defcustom lean4-keybinding-tab-indent (kbd "TAB")
-  "Lean Keybinding for tab-indent."
+  "Lean Keybinding for `tab-indent'."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-auto-complete (kbd "S-SPC")
   "Lean Keybinding for auto completion."
@@ -139,16 +139,16 @@ outside a project will default to that mode."
   "Lean Keybinding for hole manipulation."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-lean4-toggle-info (kbd "C-c C-i")
-  "Lean Keybinding for lean4-toggle-info."
+  "Lean Keybinding for `lean4-toggle-info'."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-lean4-message-boxes-toggle (kbd "C-c C-b")
-  "Lean Keybinding for lean4-message-boxes-toggle."
+  "Lean Keybinding for `lean4-message-boxes-toggle'."
   :group 'lean4-keybinding :type 'key-sequence)
 (defcustom lean4-keybinding-lake-build (kbd "C-c C-p C-l")
-  "Lean Keybinding for lean4-lake-build."
+  "Lean Keybinding for `lean4-lake-build'."
   :group 'lean4-keybinding :type 'key-sequence)
 (defcustom lean4-keybinding-refresh-file-dependencies (kbd "C-c C-d")
-  "Lean Keybinding for lean4-refresh-file-dependencies."
+  "Lean Keybinding for `lean4-refresh-file-dependencies'."
   :group 'lean4-keybinding :type 'key-sequence)
 
 (provide 'lean4-settings)

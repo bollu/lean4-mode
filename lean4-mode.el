@@ -63,17 +63,21 @@
 (declare-function quail-show-key "quail")
 
 (defun lean4-compile-string (lake-name exe-name args file-name)
-  "Concatenate EXE-NAME, ARGS, and FILE-NAME."
+  "Command to run EXE-NAME with extra ARGS and FILE-NAME.
+If LAKE-NAME is nonempty, then prepend 'LAKE-NAME env' to the command
+'EXE-NAME ARGS FILE-NAME'."
   (if lake-name
       (format "%s env %s %s %s" lake-name exe-name args file-name)
       (format "%s %s %s" exe-name args file-name)))
 
 (defun lean4-create-temp-in-system-tempdir (file-name prefix)
-  "Create a temp lean file and return its name."
+  "Create a temp lean file and return its name.
+The new file has prefix PREFIX (defaults to 'flymake') and the same extension as
+FILE-NAME."
   (make-temp-file (or prefix "flymake") nil (f-ext file-name)))
 
 (defun lean4-execute (&optional arg)
-  "Execute Lean in the current buffer."
+  "Execute Lean in the current buffer with an optional argument ARG."
   (interactive)
   (when (called-interactively-p 'any)
     (setq arg (read-string "arg: " arg)))
@@ -95,6 +99,7 @@
     (setq default-directory dd)))
 
 (defun lean4-std-exe ()
+  "Execute Lean in the current buffer."
   (interactive)
   (lean4-execute))
 
