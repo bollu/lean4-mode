@@ -55,8 +55,8 @@
   (apply #'append (mapcar f xs)))
 
 (defun lean4-input-to-string-list (s)
-  "Convert a string S to a list of one-character strings, after
-removing all space and newline characters."
+  "Convert a string S to a list of one-character strings.
+First remove all space and newline characters."
   (lean4-input-concat-map
    (lambda (c) (if (member c (string-to-list " \n"))
               nil
@@ -208,7 +208,7 @@ Each pair in the list has the form (KEY-SEQUENCE . TRANSLATION)."
   (with-temp-buffer
     (activate-input-method qp) ; To make sure that the package is loaded.
     (unless (quail-package qp)
-      (error "%s is not a Quail package." qp))
+      (error "%s is not a Quail package" qp))
     (let ((decode-map (list 'decode-map)))
       (quail-build-decode-map (list (quail-map)) "" decode-map 0)
       (cdr decode-map))))
@@ -226,7 +226,7 @@ Each pair in the list has the form (KEY-SEQUENCE . TRANSLATION)."
 
 (defun lean4-input-add-translations (trans)
   "Add the given translations TRANS to the Lean input method.
-TRANS is a list of pairs (KEY-SEQUENCE . TRANSLATION). The
+TRANS is a list of pairs (KEY-SEQUENCE . TRANSLATION).  The
 translations are appended to the current translations."
   (with-temp-buffer
     (map-do (lambda (key tr)
