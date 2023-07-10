@@ -33,21 +33,27 @@
 (require 'lean4-settings)
 
 (defun lean4-setup-rootdir ()
+  "Search for lean executable in `exec-path'.
+Try to find an executable named `lean4-executable-name' in `exec-path'.
+On succsess, return path to the directory with this executable."
   (let ((root (executable-find lean4-executable-name)))
     (when root
       (setq lean4-rootdir (f-dirname (f-dirname root))))
     lean4-rootdir))
 
 (defun lean4-get-rootdir ()
+  "Search for lean executable in `lean4-rootdir' and `exec-path'.
+First try to find an executable named `lean4-executable-name' in
+`lean4-rootdir'.  On failure, search in `exec-path'."
   (if lean4-rootdir
       (let ((lean4-path (f-full (f-join lean4-rootdir "bin" lean4-executable-name))))
         (unless (f-exists? lean4-path)
-          (error "Incorrect 'lean4-rootdir' value, path '%s' does not exist" lean4-path))
+          (error "Incorrect `lean4-rootdir' value, path '%s' does not exist" lean4-path))
         lean4-rootdir)
     (or
      (lean4-setup-rootdir)
      (error
-      (concat "Lean was not found in the 'exec-path' and 'lean4-rootdir' is not defined. "
+      (concat "Lean was not found in the `exec-path' and `lean4-rootdir' is not defined. "
               "Please set it via M-x customize-variable RET lean4-rootdir RET.")))))
 
 (defun lean4-get-executable (exe-name)
@@ -56,7 +62,8 @@
     (f-full (f-join (lean4-get-rootdir) lean4-bin-dir-name exe-name))))
 
 (defun lean4-line-offset (&optional pos)
-  "Return the byte-offset of POS or current position, counting from the beginning of the line."
+  "Return the byte-offset of POS or current position.
+Counts from the beginning of the line."
   (interactive)
   (let* ((pos (or pos (point)))
          (bol-pos
@@ -67,7 +74,7 @@
     (- pos bol-pos)))
 
 (defun lean4-pos-at-line-col (l c)
-  "Return the point of the given line `L` and column `C`."
+  "Return the point of the given line L and column C."
   ;; http://emacs.stackexchange.com/a/8083
   (save-excursion
     (goto-char (point-min))
@@ -76,12 +83,12 @@
     (point)))
 
 (defun lean4-whitespace-cleanup ()
-  "Delete trailing whitespace if `lean4-delete-trailing-whitespace` is `t`."
+  "Delete trailing whitespace if `lean4-delete-trailing-whitespace' is t."
   (when lean4-delete-trailing-whitespace
       (delete-trailing-whitespace)))
 
 (defun lean4-in-comment-p ()
-  "Return `t` if a current point is inside of comment block.  Return `nil` otherwise."
+  "Return t if a current point is inside of comment block.  Return nil otherwise."
   (nth 4 (syntax-ppss)))
 
 ;; The following function is a slightly modified version of

@@ -156,7 +156,7 @@
 ;; ~~~~~~~~~~~
 ;; We want to update the Lean4 info buffer as seldom as possible,
 ;; since magit-section is slow at rendering. We
-;; wait a small duration ('debounce-delay-sec') when we get a
+;; wait a small duration (`debounce-delay-sec') when we get a
 ;; redisplay request, to see if there is a redisplay request in the
 ;; future that invalidates the current request (debouncing).
 ;; Pictorially,
@@ -188,12 +188,12 @@
 ;; ---------------------r4(cancel r3.wait)
 ;; ---------------------...
 ;; We prevent this pathological case by keeping track of when
-;; when we began debouncing in 'lean4-info-buffer-debounce-begin-time'.
+;; when we began debouncing in `lean4-info-buffer-debounce-begin-time'.
 ;; If we have been debouncing for longer than
-;; 'lean4-info-buffer-debounce-upper-bound-sec', then we
+;; `lean4-info-buffer-debounce-upper-bound-sec', then we
 ;; immediately write instead of debouncing;
-;; 'max-debounces' times. Upon trying to stagger the
-;; 'max-debounces'th request, we immediately render:
+;; `max-debounces' times. Upon trying to stagger the
+;; `max-debounces'th request, we immediately render:
 ;; begin-time:nil----t0----------------nil-------
 ;;            -------r1                |
 ;;            -------r1.wait           |
@@ -204,7 +204,7 @@
 ;;            -------|-----------------r4(cancel r3.wait)
 ;;            -------|-----------------|
 ;;                   >-----------------<
-;;                   >longer than 'debounce-upper-bound-sec'<
+;;                   >longer than `debounce-upper-bound-sec'<
 ;;            -------------------------r4.render(FORCED)
 
 
