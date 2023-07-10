@@ -130,7 +130,7 @@ outside a project will default to that mode."
   "Lean Keybinding for `lean4-server-switch-version'."
   :group 'lean4-keybinding :type 'key-sequence)
 (defcustom lean4-keybinding-tab-indent (kbd "TAB")
-  "Lean Keybinding for `tab-indent'."
+  "Lean Keybinding for `lean4-tab-indent'."
   :group 'lean4-keybinding  :type 'key-sequence)
 (defcustom lean4-keybinding-auto-complete (kbd "S-SPC")
   "Lean Keybinding for auto completion."

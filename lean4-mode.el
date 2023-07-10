@@ -121,12 +121,14 @@ file, recompiling, and reloading all imports."
                :text (lsp--buffer-content)))))
 
 (defun lean4-tab-indent ()
+  "Lean 4 function for TAB indent."
   (interactive)
   (cond ((looking-back (rx line-start (* white)) nil)
          (lean4-eri-indent))
         (t (indent-for-tab-command))))
 
 (defun lean4-set-keys ()
+  "Setup Lean 4 keybindings."
   (local-set-key lean4-keybinding-std-exe1                  #'lean4-std-exe)
   (local-set-key lean4-keybinding-std-exe2                  #'lean4-std-exe)
   (local-set-key lean4-keybinding-show-key                  #'quail-show-key)
@@ -145,14 +147,14 @@ file, recompiling, and reloading all imports."
   '())
 
 (defvar lean4-mode-map (make-sparse-keymap)
-  "Keymap used in Lean mode")
+  "Keymap used in Lean mode.")
 
 (defun lean4-mk-check-menu-option (text sym)
   `[,text (lean4-set-check-mode ',sym)
          :style radio :selected (eq lean4-server-check-mode ',sym)])
 
 (easy-menu-define lean4-mode-menu lean4-mode-map
-  "Menu for the Lean major mode"
+  "Menu for the Lean major mode."
   `("Lean 4"
     ["Execute lean"         lean4-execute                      t]
     ;; ["Create a new project" (call-interactively 'lean4-project-create) (not (lean4-project-inside-p))]
@@ -195,7 +197,7 @@ to be added or removed from the hook variable if Flycheck mode is
 enabled and disabled respectively.")
 
 (defun lean4-mode-setup ()
-  "Default lean4-mode setup"
+  "Default lean4-mode setup."
   ;; Right click menu sources
   ;;(setq lean4-right-click-item-functions '(lean4-info-right-click-find-definition
   ;;                                        lean4-hole-right-click))
@@ -206,8 +208,8 @@ enabled and disabled respectively.")
   (lean4-create-lsp-workspace))
 
 (defun lean4-create-lsp-workspace ()
-  "This will allow us to use emacs when a repo contains
-multiple lean packages"
+  "Create an LSP workspace.
+This will allow us to use Emacs when a repo contains multiple lean packages."
   (when-let ((file-name (buffer-file-name))
              (root (vc-find-root (buffer-file-name)
                                  "lakefile.lean")))
@@ -216,10 +218,9 @@ multiple lean packages"
 ;; Automode List
 ;;;###autoload
 (define-derived-mode lean4-mode prog-mode "Lean 4"
-  "Major mode for Lean
-     \\{lean4-mode-map}
-Invokes `lean4-mode-hook'.
-"
+  "Major mode for Lean.
+\\{lean4-mode-map}
+Invokes `lean4-mode-hook'."
   :syntax-table lean4-syntax-table
   :abbrev-table lean4-abbrev-table
   :group 'lean
@@ -245,19 +246,21 @@ Invokes `lean4-mode-hook'.
   (lean4-mode-setup))
 
 (defun lean4--version ()
+  "Return Lean version as a list '(MAJOR MINOR PATCH)'."
   (with-temp-buffer
-    (call-process (lean4-get-executable "lean") nil (list t nil) nil
-                  "-v")
+    (call-process (lean4-get-executable "lean") nil (list t nil) nil "-v")
     (goto-char (point-min))
     (re-search-forward (rx bol "Lean (version " (group (+ digit) (+ "." (+ digit)))))
     (version-to-list (match-string 1))))
 
 (defun lean4-show-version ()
+  "Print Lean 4 version."
   (interactive)
   (message "Lean %s" (mapconcat #'number-to-string (lean4--version) ".")))
 
 ;;;###autoload
 (defun lean4-select-mode ()
+  "Automatically select mode (Lean 3 vs Lean 4)."
   (if (and lean4-autodetect-lean3
            (eq 3 (car (lean4--version))))
       (lean-mode)
