@@ -33,8 +33,8 @@
 (require 'lean4-settings)
 
 (defun lean4-setup-rootdir ()
-  "Search for lean executable in `exec-path'.
-Try to find an executable named `lean4-executable-name' in `exec-path'.
+  "Search for lean executable in variable `exec-path'.
+Try to find an executable named `lean4-executable-name' in variable `exec-path'.
 On succsess, return path to the directory with this executable."
   (let ((root (executable-find lean4-executable-name)))
     (when root
@@ -42,9 +42,9 @@ On succsess, return path to the directory with this executable."
     lean4-rootdir))
 
 (defun lean4-get-rootdir ()
-  "Search for lean executable in `lean4-rootdir' and `exec-path'.
+  "Search for lean executable in `lean4-rootdir' and variable `exec-path'.
 First try to find an executable named `lean4-executable-name' in
-`lean4-rootdir'.  On failure, search in `exec-path'."
+`lean4-rootdir'.  On failure, search in variable `exec-path'."
   (if lean4-rootdir
       (let ((lean4-path (f-full (f-join lean4-rootdir "bin" lean4-executable-name))))
         (unless (f-exists? lean4-path)
