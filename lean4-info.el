@@ -236,9 +236,9 @@ If we recieve a request such that we have been debouncing for longer than
 ;;  Debounce implementation modifed from lsp-lens
 ;; https://github.com/emacs-lsp/lsp-mode/blob/2f0ea2e396ec9a570f2a2aeb097c304ddc61ebee/lsp-lens.el#L140
 (defun lean4-info-buffer-redisplay-debounced ()
-  "Debounced version of lean4-info-buffer-redisplay that ensures that
-info buffer is not repeatedly written to. This is to prevent lag,
-because magit is quite slow at building sections."
+  "Debounced version of `lean4-info-buffer-redisplay'.
+This version ensures that info buffer is not repeatedly written to.  This is to
+prevent lag, because magit is quite slow at building sections."
   ;;  if we have not begun debouncing, setup debouncing begin time.
   (if (not lean4-info-buffer-debounce-begin-time)
       (setq lean4-info-buffer-debounce-begin-time (current-time)))
