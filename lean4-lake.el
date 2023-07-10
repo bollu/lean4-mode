@@ -38,10 +38,10 @@
 
 (defun lean4-lake-find-dir-safe ()
   (or (lean4-lake-find-dir)
-      (error "cannot find lakefile.lean for %s" (buffer-file-name))))
+      (error "Cannot find lakefile.lean for %s" (buffer-file-name))))
 
 (defun lean4-lake-build ()
-  "Call lake build"
+  "Call lake build."
   (interactive)
   (let ((default-directory (file-name-as-directory (lean4-lake-find-dir-safe))))
     (compile (concat (lean4-get-executable lean4-lake-name) " build"))))
