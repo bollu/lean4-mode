@@ -124,7 +124,8 @@ Counts from the beginning of the line."
 ;; f-files function written by Johan Andersson The URL is at
 ;; https://github.com/rejeep/f.el/blob/master/f.el#L478-L481
 (defun lean4-find-files (path &optional fn recursive)
-  "Find all files in PATH. "
+  "Find all files in PATH.
+Optionally filter files satisfying predicate FN and/or use RECURSIVE search."
   ;; It calls lean4--collect-entries instead of f--collect-entries
   (let ((files (-select 'f-file? (lean4--collect-entries path recursive))))
     (if fn (-select fn files) files)))
