@@ -65,6 +65,8 @@
        (setq buffer-read-only t))))
 
 (defun lean4-ensure-info-buffer (buffer)
+  "Create BUFFER if it does not exist.
+Also choose settings used for the *Lean Goal* buffer."
   (unless (get-buffer buffer)
     (with-current-buffer (get-buffer-create buffer)
       (buffer-disable-undo)
@@ -73,6 +75,8 @@
       (setq buffer-read-only t))))
 
 (defun lean4-toggle-info-buffer (buffer)
+  "Create or delete BUFFER.
+The buffer is supposed to be the *Lean Goal* buffer."
   (-if-let (window (get-buffer-window buffer))
       (quit-window nil window)
     (lean4-ensure-info-buffer buffer)
@@ -265,6 +269,7 @@ prevent lag, because magit is quite slow at building sections."
 
 
 (defun lean4-info-buffer-refresh ()
+  "Refresh the *Lean Goal* buffer."
   (when (lean4-info-buffer-active lean4-info-buffer-name)
     (lsp-request-async
      "$/lean/plainGoal"
