@@ -56,6 +56,7 @@
        'common-lisp-indent-function))
 
 (defmacro lean4-with-info-output-to-buffer (buffer &rest body)
+  "Execute BODY redirecting `print' output to BUFFER."
   `(let ((buf (get-buffer ,buffer)))
      (with-current-buffer buf
        (setq buffer-read-only nil)

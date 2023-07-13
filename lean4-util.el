@@ -95,6 +95,10 @@ Counts from the beginning of the line."
 ;; f--collect-entries written by Johan Andersson
 ;; The URL is at https://github.com/rejeep/f.el/blob/master/f.el#L416-L435
 (defun lean4--collect-entries (path recursive)
+  "Find all files in PATH.  If RECURSIVE, then descend into subfolders.
+This is a modified version of `f--collect-entries' that waits for 0.0001s before
+descending into subfolders.  This allows `wait-timeout' function to check the
+timer and kill the execution of this function."
   (let (result
         (entries
          (-reject
