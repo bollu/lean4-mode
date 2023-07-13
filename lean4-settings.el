@@ -141,9 +141,6 @@ outside a project will default to that mode."
 (defcustom lean4-keybinding-lean4-toggle-info (kbd "C-c C-i")
   "Lean Keybinding for `lean4-toggle-info'."
   :group 'lean4-keybinding  :type 'key-sequence)
-(defcustom lean4-keybinding-lean4-message-boxes-toggle (kbd "C-c C-b")
-  "Lean Keybinding for `lean4-message-boxes-toggle'."
-  :group 'lean4-keybinding :type 'key-sequence)
 (defcustom lean4-keybinding-lake-build (kbd "C-c C-p C-l")
   "Lean Keybinding for `lean4-lake-build'."
   :group 'lean4-keybinding :type 'key-sequence)
