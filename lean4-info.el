@@ -107,6 +107,7 @@ The buffer is supposed to be the *Lean Goal* buffer."
   line)
 
 (defun lean4-mk-message-section (caption errors)
+  "Add a section with caption CAPTION and contents ERRORS."
   (when errors
     (magit-insert-section (magit-section)
       (magit-insert-heading caption)
@@ -119,6 +120,8 @@ The buffer is supposed to be the *Lean Goal* buffer."
                 (insert message "\n")))))))))
 
 (defun lean4-info-buffer-redisplay ()
+  "Rebuild contents of the *Lean Goal*.
+TODO: what does `lean4-info-buffer-active` guard for?"
   (when (lean4-info-buffer-active lean4-info-buffer-name)
     (-let* ((deactivate-mark) ; keep transient mark
             (line (lsp--cur-line))
